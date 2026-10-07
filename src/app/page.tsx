@@ -95,18 +95,22 @@ export default function Home() {
             aria-hidden
             className="absolute -top-40 right-[-10%] -z-10 size-[720px] rounded-full bg-brand/25 blur-[140px]"
           />
-          <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center gap-12 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:pt-20">
-            <div>
-              <p
-                data-reveal
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-brand uppercase"
-              >
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-brand" />
-                </span>
-                Inscrições abertas
-              </p>
+          <div
+            data-reveal
+            style={{ "--delay": "200ms" } as React.CSSProperties}
+            className="hero-photo absolute inset-x-0 top-0 -z-10 h-[72svh] lg:inset-x-auto lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[55%]"
+          >
+            <Image
+              src={rafaTraining}
+              alt="Rafa Silva treinando na Silva Gym"
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1024px) 55vw, 90vw"
+              className="h-full w-full object-cover object-[60%_center] opacity-60 lg:opacity-100"
+            />
+          </div>
+          <div className="mx-auto flex min-h-[100svh] max-w-7xl items-end px-5 pt-28 pb-16 sm:px-8 lg:items-center lg:pt-20">
+            <div className="lg:max-w-[52%]">
               <h1
                 data-reveal
                 style={{ "--delay": "80ms" } as React.CSSProperties}
@@ -138,36 +142,6 @@ export default function Home() {
                     transformados
                   </span>
                 </div>
-              </div>
-            </div>
-
-            <div
-              data-reveal
-              style={{ "--delay": "200ms" } as React.CSSProperties}
-              className="relative mx-auto w-full max-w-md lg:max-w-none"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-white/10">
-                <Image
-                  src={rafaTraining}
-                  alt="Rafa Silva treinando na Silva Gym"
-                  priority
-                  placeholder="blur"
-                  sizes="(min-width: 1024px) 40vw, 90vw"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-right">
-                  <p className="font-display text-3xl uppercase">Silva Team</p>
-                  <p className="mt-1 text-sm text-cream/70">
-                    Acompanhamento direto com o Rafa
-                  </p>
-                </div>
-              </div>
-              <div className="absolute -bottom-5 -left-4 hidden rotate-[-4deg] rounded-2xl bg-cream px-5 py-4 text-ink shadow-2xl sm:block">
-                <p className="font-display text-3xl leading-none">+1.000</p>
-                <p className="mt-1 text-xs font-semibold tracking-wide uppercase">
-                  alunos ativos ao mesmo tempo
-                </p>
               </div>
             </div>
           </div>

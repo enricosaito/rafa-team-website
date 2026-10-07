@@ -51,6 +51,20 @@ body {
   transform: none;
 }
 
+/* Hero photo melts into the background: fades out at the bottom on mobile, left/bottom on desktop */
+.hero-photo {
+  mask-image: linear-gradient(to bottom, #000 35%, transparent);
+}
+
+@media (min-width: 64rem) {
+  .hero-photo {
+    mask-image:
+      linear-gradient(to right, transparent, #000 45%),
+      linear-gradient(to top, transparent, #000 30%);
+    mask-composite: intersect;
+  }
+}
+
 .grain::after {
   content: "";
   position: absolute;

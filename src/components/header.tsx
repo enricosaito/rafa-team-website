@@ -6,7 +6,6 @@ import logo from "../../public/images/logo.png";
 import { CtaButton } from "./cta-button";
 
 const links = [
-  { href: "#metodo", label: "O método" },
   { href: "#resultados", label: "Resultados" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#rafa", label: "Quem é o Rafa" },
@@ -45,7 +44,7 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <CtaButton size="sm">Quero fazer parte</CtaButton>
+        <CtaButton size="sm" className="max-lg:hidden">Quero fazer parte</CtaButton>
       </div>
     </header>
   );

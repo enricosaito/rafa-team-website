@@ -7,10 +7,12 @@ export function CtaButton({
   children,
   size = "lg",
   variant = "brand",
+  className = "",
 }: {
   children: React.ReactNode;
   size?: "sm" | "lg";
   variant?: "brand" | "dark";
+  className?: string;
 }) {
   const sizes =
     size === "sm" ? "h-10 px-4 text-xs gap-1.5" : "h-14 px-7 text-sm gap-2";
@@ -24,7 +26,7 @@ export function CtaButton({
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex shrink-0 items-center rounded-full font-bold tracking-wide uppercase transition-[background-color,transform] duration-200 active:scale-[0.97] ${sizes} ${variants}`}
+      className={`group inline-flex shrink-0 items-center rounded-full font-bold tracking-wide uppercase transition-[background-color,transform] duration-200 active:scale-[0.97] ${sizes} ${variants} ${className}`}
     >
       {children}
       <ArrowUpRight

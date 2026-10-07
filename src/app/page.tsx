@@ -1,15 +1,8 @@
 import Image from "next/image";
-import {
-  CalendarCheck,
-  LineChart,
-  MessageCircle,
-  ScanSearch,
-  Dumbbell,
-  Salad,
-} from "lucide-react";
 import { Header } from "@/components/header";
 import { CtaButton } from "@/components/cta-button";
-import { ResultsCarousel } from "@/components/results-carousel";
+import { ResultsGrid } from "@/components/results-grid";
+import { MobileCta } from "@/components/mobile-cta";
 import { RevealObserver } from "@/components/reveal";
 
 import logo from "../../public/images/logo.png";
@@ -30,15 +23,6 @@ import r12 from "../../public/images/results/12.png";
 
 const results = [r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12];
 
-const pillars = [
-  { icon: ScanSearch, title: "Análise individual", text: "Entendemos seu momento, rotina e objetivo antes de qualquer protocolo." },
-  { icon: Salad, title: "Dieta individualizada", text: "Construída pra sua realidade, seus horários e suas preferências." },
-  { icon: Dumbbell, title: "Treino individualizado", text: "Montado pra trabalhar junto com a sua dieta e o seu objetivo." },
-  { icon: CalendarCheck, title: "Atualizações semanais", text: "Peso, fotos e feedback toda semana para acompanhar cada passo." },
-  { icon: LineChart, title: "Ajustes pela sua evolução", text: "Mudamos a estratégia quando seu corpo e seus resultados pedirem." },
-  { icon: MessageCircle, title: "Suporte o tempo todo", text: "Contato direto pelo WhatsApp durante todo o acompanhamento." },
-];
-
 const steps = [
   { title: "Conte pra gente sobre você", text: "Anamnese + fotos para conhecermos seu momento, rotina e objetivo." },
   { title: "Rafa analisa seu caso", text: "Análise individual para definir a sua estratégia." },
@@ -53,7 +37,7 @@ const tags = ["Treino", "Nutrição", "Estratégia", "Acompanhamento"];
 function Eyebrow({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
     <p className={`mb-5 flex items-center gap-3 text-xs ${center ? "justify-center" : ""} font-semibold tracking-[0.25em] text-brand uppercase`}>
-      <span className="h-px w-8 bg-brand" aria-hidden />
+      <span className={`h-px w-8 shrink-0 bg-brand ${center ? "max-sm:hidden" : ""}`} aria-hidden />
       {children}
     </p>
   );
@@ -87,10 +71,11 @@ export default function Home() {
     <>
       <RevealObserver />
       <Header />
+      <MobileCta />
 
       <main id="top">
         {/* HERO */}
-        <section className="grain relative isolate overflow-hidden">
+        <section id="hero" className="grain relative isolate overflow-hidden">
           <div
             aria-hidden
             className="absolute -top-40 right-[-10%] -z-10 size-[720px] rounded-full bg-brand/25 blur-[140px]"
@@ -149,79 +134,9 @@ export default function Home() {
 
         <Marquee />
 
-        {/* ORIGIN */}
-        <section className="relative bg-cream text-ink">
-          <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:py-32">
-            <div data-reveal>
-              <Eyebrow>Agora, o Silva Team está de volta</Eyebrow>
-              <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] uppercase">
-                Antes de existir a Silva Gym,{" "}
-                <span className="text-brand">já existia o método.</span>
-              </h2>
-            </div>
-            <div data-reveal style={{ "--delay": "120ms" } as React.CSSProperties} className="lg:pt-12">
-              <p className="font-display text-[clamp(5rem,14vw,9rem)] leading-none text-brand">
-                +3.000
-              </p>
-              <p className="mt-4 text-sm font-bold tracking-wide uppercase">
-                Pessoas reais, diferentes corpos, rotinas, dificuldades e
-                objetivos ajudaram a construir a metodologia que agora retorna
-                em uma nova fase.
-              </p>
-              <p className="mt-6 text-lg leading-relaxed text-ink/70">
-                Milhares de vidas foram transformadas através de protocolos de
-                dieta e treino, com o método e acompanhamento do Rafa.{" "}
-                <strong className="text-ink">Agora, voltamos.</strong>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* METHOD */}
-        <section id="metodo" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
-          <div data-reveal className="max-w-3xl">
-            <Eyebrow>O método</Eyebrow>
-            <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] uppercase">
-              O método evoluiu.
-              <br />
-              <span className="text-brand">A essência continua a mesma.</span>
-            </h2>
-          </div>
-
-          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/10 sm:grid-cols-2 lg:grid-cols-3">
-            {pillars.map(({ icon: Icon, title, text }, i) => (
-              <div
-                key={title}
-                data-reveal
-                style={{ "--delay": `${(i % 3) * 80}ms` } as React.CSSProperties}
-                className="group relative bg-ink p-8 transition-colors duration-300 hover:bg-ink-2 lg:p-10"
-              >
-                <span className="absolute top-8 right-8 font-display text-sm text-cream/20">
-                  0{i + 1}
-                </span>
-                <div className="mb-8 grid size-12 place-items-center rounded-xl bg-brand/10 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-ink">
-                  <Icon className="size-6" />
-                </div>
-                <h3 className="font-display text-2xl tracking-wide uppercase">{title}</h3>
-                <p className="mt-3 leading-relaxed text-cream/60">{text}</p>
-              </div>
-            ))}
-          </div>
-
-          <div data-reveal className="mt-24 grid gap-6 text-center">
-            <p className="font-display text-[clamp(2.25rem,7vw,5.5rem)] leading-[0.95] uppercase">
-              Você executa.
-              <br />
-              <span className="text-cream/40">A gente acompanha.</span>
-              <br />
-              <span className="text-brand">Seu protocolo evolui com você.</span>
-            </p>
-          </div>
-        </section>
-
         {/* RESULTS */}
-        <section id="resultados" className="border-t border-white/10 bg-ink-2 py-24 lg:py-32">
-          <div className="mx-auto mb-14 flex max-w-7xl flex-wrap items-end justify-between gap-8 px-5 sm:px-8">
+        <section id="resultados" className="bg-ink-2 py-24 lg:py-32">
+          <div className="mx-auto mb-14 max-w-7xl px-5 sm:px-8">
             <div data-reveal className="max-w-2xl">
               <Eyebrow>Resultados reais</Eyebrow>
               <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] uppercase">
@@ -229,12 +144,12 @@ export default function Home() {
                 <span className="text-brand">Você vem com a gente?</span>
               </h2>
             </div>
-            <div data-reveal style={{ "--delay": "120ms" } as React.CSSProperties}>
-              <CtaButton>Quero fazer parte</CtaButton>
-            </div>
           </div>
-          <div data-reveal>
-            <ResultsCarousel images={results} />
+          <div data-reveal className="mx-auto max-w-7xl px-5 sm:px-8">
+            <ResultsGrid images={results} />
+          </div>
+          <div data-reveal className="mt-12 flex justify-center px-5">
+            <CtaButton>Quero fazer parte</CtaButton>
           </div>
         </section>
 
@@ -316,7 +231,7 @@ export default function Home() {
         </section>
 
         {/* FINAL CTA */}
-        <section className="grain relative isolate overflow-hidden">
+        <section id="inscricao" className="grain relative isolate overflow-hidden">
           <div
             aria-hidden
             className="absolute bottom-[-40%] left-1/2 -z-10 size-[900px] -translate-x-1/2 rounded-full bg-brand/30 blur-[160px]"
